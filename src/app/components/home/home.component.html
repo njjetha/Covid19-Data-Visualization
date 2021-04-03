@@ -2,10 +2,57 @@
     <h1 class="display-4">Hello, world!</h1>
     <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
     <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Est eos provident quod ab error similique eum possimus officia, 
-        expedita quaerat voluptatibus ipsa aliquid nulla explicabo harum mollitia sint delectus quis!
-    </p>
+    <hr>
+
+    
+    <div class="row ">
+        <div class="card col m-3 p-3">
+            <div class="ui statistic">
+                <div class="label">
+                Total Confirmed
+                </div>
+                <div class="value">
+                {{totalConfirmed}}
+                </div>
+            </div>
+        </div>
+        <div class="card col m-3 p-3">
+            <div class="ui statistic">
+                <div class="label">
+                Total Active
+                </div>
+                <div class="value">
+                {{totalActive}}
+                </div>
+            </div>
+        </div>
+        <div class="card col m-3 p-3">
+            <div class="ui statistic">
+                <div class="label">
+                Total Recovered
+                </div>
+                <div class="value">
+                {{totalRecovered}}
+                </div>
+            </div>
+        </div>
+        <div class="card col m-3 p-3">
+            <div class="ui statistic">
+                <div class="label">
+                Total Deaths
+                </div>
+                <div class="value">
+                {{totalDeath}}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <p>Total confirmed cases -> {{totalConfirmed}}</p>
+    <p>Total Deceased cases ->{{totalDeath}}</p>
+    <p>Total Active cases -> {{totalActive}}</p>
+    <p>Total Recovered cases ->{{totalRecovered}}</p>
   </div>
