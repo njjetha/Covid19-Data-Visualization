@@ -1,0 +1,247 @@
+* {
+    box-sizing: border-box;
+  }
+
+  h1 {
+    font-family: monospace !important;
+    font-size: 3.5rem !important;
+  }
+
+  p {
+    margin-bottom: 0rem !important;
+  }
+  
+  h1 {
+  @media screen and (max-width: 475px) {
+    font-size: 2rem !important;
+  }
+}
+  
+  /* Style the body */
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+  }
+
+  /* .titles {
+    . padding-20 {
+      padding: 20px;
+      .navbar {
+        overflow: hidden;
+        background-color: white;
+        text-align: left;
+        top: 0;
+        justify-content: left;
+      } */
+  
+      /* Style the navigation bar links */
+      .navbar a {
+        float: left;
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+      }
+  
+  /* Change color on hover */
+      .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      /* .adjust-width {
+        max-width: inherit !important;
+        padding: 10px;
+        .header-text {
+          text-align: center;
+          flex-grow: 1;
+          padding: 20px;
+          font-family: monospace;
+        }
+    } */
+      .confirmed-text {
+          flex-grow: 1;
+          text-align: center;
+          background-color: black;
+          color: whitesmoke;
+          font-family: monospace;
+        }
+      .active-text {
+          flex-grow: 1;
+          text-align: center;
+          background-color: white;
+          color: black;
+          font-family: monospace;
+      }
+    
+       
+      @media screen and (max-width: 375px) {
+      .adjust-width {
+        max-width: inherit !important;
+        padding: 10px;
+      }
+      }
+    
+
+    @media screen and (max-width: 475px) {  
+      .padding-20 {
+        padding: 5px;
+    }
+    }
+ 
+
+  /* .grid-container {
+
+    .padding-20 {
+      padding: 20px;
+    } */
+
+    @media screen and (max-width: 475px) {  
+      .padding-20 {
+        padding: 5px;
+    }
+    }
+ 
+  
+  /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 700px) {
+    .row {   
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .row {   
+      flex-direction: column;
+    }
+  }
+
+  .ui-widget {
+    font-family: monospace !important;
+    font-size: 18px !important;
+    text-transform: uppercase !important;
+  }
+
+  @media screen and (max-width: 375px) {
+    .ui-widget, .ui-widget * {
+      font-size: 7px;
+    }
+  }
+
+  @media screen and (max-width: 430px) {
+    .ui-widget, .ui-widget * {
+      font-size: 12px;
+    }
+  }
+
+  @media screen and (min-width: 700px) and (max-width: 1030px) {
+    .ui-widget, .ui-widget * {
+      font-size: 12px;
+    }
+  }
+
+  .ui-table table {
+    border-collapse: separate;
+    border-spacing: 4px;
+  }
+
+  body .ui-table .ui-table-thead > tr > th {
+    border-radius: 6px;
+		border: none;
+		position: sticky;
+    top: 0;
+    background-color: #e8e8e8;
+  }
+
+  body .ui-table .ui-table-tbody > tr > td {
+    border: none;
+    border-radius: 6px;
+    padding: 0px;
+  }
+
+	.ui-table-resizable>.ui-table-wrapper {
+		overflow-x: initial !important;
+  }
+
+  body a {
+    color: #333333;
+  }
+
+  body .pi {
+    font-size: 0.85em;
+  }
+  
+  .total-field {
+    font-weight: bolder;
+    text-transform: uppercase !important;
+    pointer-events: none;
+  }
+
+  .cursor {
+    cursor: pointer;
+  }
+
+  .ui-g {
+    margin-left: 15px !important;
+  }
+
+  .ui-table {
+    position: inherit;
+  }
+
+  .chart-styles {
+    width: 50vw;
+    height: 50vh;
+  }
+
+
+.mrg-top {
+  background-color:#F6DDCC;
+  border-radius: 6px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 10px;
+}
+
+.mrg-top-20 {
+  background-color:#F6DDCC;
+  border-radius: 6px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 10px;
+  margin-top: 40px;
+}
+
+@media screen and (max-width: 475px) {
+  #chartjs-tooltip {
+    font-size: 8px !important;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  #chartjs-tooltip-bar {
+    font-size: 8px !important;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  #chartjs-tooltip-bar-daily-confirmed {
+    font-size: 8px !important;
+  }
+}
+
+.create-box {
+  background-color: #FBEEE6;
+}
+
+.table-heading {
+  text-align: center;
+  font-family: monospace;
+  font-size: -webkit-xxx-large;
+  padding: 10px; 
+  @media screen and (max-width: 475px) {
+    font-size: 18px;
+  }
+}
+

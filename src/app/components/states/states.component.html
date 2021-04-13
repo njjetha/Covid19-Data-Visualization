@@ -1,0 +1,79 @@
+<div class="jumbotron text-center ">
+    <app-dashboard-card [Confirmed]='totalConfirmed' [Active]='totalActive' [Death]='totalDeath' 
+      [Recovered]='totalRecovered'></app-dashboard-card>
+</div>
+
+
+
+
+
+
+<div class="grid-container">
+    <div class="padding-20">
+        <div class="row">
+            <div class="col-md 6">
+                <div class="table-heading"> STATE DATA </div>
+                <p-table [columns]="gridColumns" [value]="covid19DisplayData"
+                    dataKey="state" [rowHover]="true">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns" [ngStyle]="col.style">
+                                <span *ngIf="innerWidth < 475">
+                                    {{col.mobileHeader}}
+                                </span>
+                                <span *ngIf="innerWidth > 475">
+                                    {{col.header}}
+                                </span>
+                                <!-- <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon> -->
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex"
+                        let-expanded="expanded">
+                        <tr class="ui-selectable-row">
+                            <td *ngFor="let col of columns"
+                                [ngClass]="{'total-field' : index == covid19DisplayData.length - 1}"
+                                [ngStyle]="col.style">
+                                <div [ngClass]="{'cursor' : index !== covid19DisplayData.length - 1}"
+                                    [pRowToggler]="rowData">
+                                    <span *ngIf="col.field === 'blank' && index !== covid19DisplayData.length - 1">
+                                        <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                                    </span>
+                                    <span>
+                                        {{rowData[col.field]}}
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+                        <tr>
+                            <td [attr.colspan]="columns.length - 1">
+                                <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
+                                    <p-table [columns]="treeTableColumns" [value]="transformedDistrictWiseData">
+                                        <ng-template pTemplate="header" let-columns>
+                                            <tr>
+                                                <th *ngFor="let col of columns" [style]="col.style">
+                                                    {{col.header}}
+                                                </th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-treeData let-columns="columns" let-index="rowIndex">
+                                            <tr *ngIf="rowData.state === treeData.state">
+                                                <td *ngFor="let col of columns" [style]="col.style">
+                                                    <span>
+                                                        {{ treeData[col.field] }}
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>
