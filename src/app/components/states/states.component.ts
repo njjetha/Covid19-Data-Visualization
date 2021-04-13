@@ -11,7 +11,7 @@ import { GoogleChartInterface } from 'ng2-google-charts';
 })
 export class StatesComponent implements OnInit {
 
-
+  /*data variables */
   public districtWiseData:any;
   public totalConfirmed=0;
   public totalActive=0;
