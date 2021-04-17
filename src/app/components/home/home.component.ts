@@ -10,6 +10,8 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 export class HomeComponent implements OnInit {
   @ViewChild('mychart1 ', {static: false}) mychart1:any;
   @ViewChild('mychart2 ', {static: false}) mychart2:any;
+  @ViewChild('mychart3 ', {static: false}) mychart3:any;
+
 
   tempConfirmed:number=0;
   tempActive:number=0;
@@ -35,6 +37,11 @@ export class HomeComponent implements OnInit {
   public ColumnChart: GoogleChartInterface = {
     chartType: 'ColumnChart',
   };
+
+  public geoChart: GoogleChartInterface = {
+    chartType: 'GeoChart'
+  };
+
   constructor(private dataservice:DataServiceService) { }
 
 
@@ -75,7 +82,25 @@ export class HomeComponent implements OnInit {
         width:1200
       },
     };
+
     // console.log(this.pieChart.dataTable);
+                       // added by gourav for geochart
+    this.geoChart={
+      chartType: 'GeoChart',
+    dataTable: this.database,
+    options: {
+      region: 'IN', // INDIA
+      colorAxis: {colors: ['#00F919', '#0FFFE4', '#1FA20F','#156930','#033E3B']},
+      resolution: 'provinces',
+      backgroundColor: '#00000',
+      datalessRegionColor: '#00000',
+      defaultColor: '#00000',
+      width: 1200,
+      height:500
+    } 
+  };
+
+
   }
 
 
@@ -136,6 +161,8 @@ export class HomeComponent implements OnInit {
     this.initChart(input.value);
     this.mychart1.draw();
     this.mychart2.draw();
+    this.mychart3.draw();
+   
    
   }
 
