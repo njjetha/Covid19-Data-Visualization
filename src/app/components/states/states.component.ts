@@ -17,7 +17,7 @@ export class StatesComponent implements OnInit {
   public totalActive=0;
   public totalRecovered=0;
   public totalDeath=0;
-  public lineGraphdata:any[]=[['Time_Period','Confirmed','Death','Recovered']];
+  public lineGraphdata:any[]=[['TimePeriod','Confirmed','Death','Recovered']];
 
 
 
