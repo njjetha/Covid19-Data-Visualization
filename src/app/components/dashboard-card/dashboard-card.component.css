@@ -3,6 +3,24 @@
     padding-right: 20px;
     box-shadow: 0 0px 20px 0 rgba(0,0,0,0.2);
     background-color: rgba(206, 36, 36, 0.2);
-    color: rgb(99, 30, 210);
+    color:black;
     transition: 0.3s;
+ }
+
+ .confirmed {
+     /* color:red; */
+     color:black;
+     background-color:rgb(197, 124, 124);
+ }
+
+ .active{
+    background-color: rgb(127, 127, 214);
+ }
+
+ .recovered{
+     background-color: rgb(136, 214, 136);
+ }
+
+ .deceased{
+     background-color: rgb(179, 178, 178);
  }

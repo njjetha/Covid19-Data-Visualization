@@ -14,12 +14,18 @@ export class StatesComponent implements OnInit {
   /*data variables */
   public districtWiseData:any;
   public totalConfirmed=0;
+  public Confirmed:any;
   public totalActive=0;
+  public Active:any;
   public totalRecovered=0;
+  public Recovered:any;
   public totalDeath=0;
+  public Death:any;
   public lineGraphdata:any[]=[['TimePeriod','Confirmed','Death','Recovered']];
 
-
+  public DailyConfirmed:any;
+  public DailyDeceased:any;
+  public DailyRecovered:any;
 
   public transformedDistrictWiseData: Array<DistrictData> = [];
   public covid19Data: any;
@@ -118,6 +124,10 @@ export class StatesComponent implements OnInit {
       }
     }
     // console.log(this.DistrictWiseData);
+    this.Confirmed=this.totalConfirmed.toLocaleString('en-IN', {maximumFractionDigits:2});
+    this.Active=this.totalActive.toLocaleString('en-IN', {maximumFractionDigits:2});
+    this.Death=this.totalDeath.toLocaleString('en-IN',{maximumFractionDigits:2});
+    this.Recovered=this.totalRecovered.toLocaleString('en-IN',{maximumFractionDigits:2});
   }
 
 
@@ -127,8 +137,14 @@ export class StatesComponent implements OnInit {
       for(const[key,value]of Object.entries(this.covid19Data)){
         var x:any=value;
         this.lineGraphdata.push([x.date,parseInt(x.dailyconfirmed),parseInt(x.dailydeceased),parseInt(x.dailyrecovered)]);
+        this.DailyConfirmed=parseInt(x.dailyconfirmed);
+        this.DailyDeceased=parseInt(x.dailydeceased);
+        this.DailyRecovered=parseInt(x.dailyrecovered);
       }
-      // console.log(this.lineGraphdata);
+      // console.log(this.DailyConfirmed);
+      this.DailyConfirmed=this.DailyConfirmed.toLocaleString('en-IN', {maximumFractionDigits:2});
+      this.DailyDeceased=this.DailyDeceased.toLocaleString('en-IN', {maximumFractionDigits:2});
+      this.DailyRecovered=this.DailyRecovered.toLocaleString('en-IN', {maximumFractionDigits:2});
     });
     this.initChart();
   }
@@ -141,8 +157,8 @@ export class StatesComponent implements OnInit {
         title: 'Covid Cases till Date',
         legend: { position: 'top', maxLines: 3 },
         width: 700,
-        height:500,
-       
+        height:700,
+      
       animation: {
         duration: 3000,
         easing: 'out',
@@ -158,7 +174,13 @@ export class StatesComponent implements OnInit {
       // majorTicks: ['0', '1', '2', '3', '4', '5'],
       // greenColor: '#d0e9c6'
       hAxis: {title: 'Time Period', minValue: 0, maxValue: 15},
-      vAxis: {title: 'Daily Cases', minValue: 0, maxValue: 15},
+      vAxis: {
+        title: 'Daily Cases', 
+        minValue: 0, 
+        maxValue: 15,
+        scaleType:'linear',
+        gridlines:{count:40}
+      },
       }
     };
   }

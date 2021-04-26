@@ -15,6 +15,14 @@ export class DashboardCardComponent implements OnInit {
   Death:any;
   @Input('Recovered')
   Recovered:any;
+  @Input('dailyc')
+  DailyConfirmed:any;
+  @Input('dailyd')
+  DailyDeceased:any;
+  @Input('dailyr')
+  DailyRecovered:any;
+
+
   constructor() { }
  
 

@@ -1,15 +1,19 @@
 <div class="jumbotron text-center ">
-    <app-dashboard-card [Confirmed]='totalConfirmed' [Active]='totalActive' [Death]='totalDeath' 
-      [Recovered]='totalRecovered'></app-dashboard-card>
+    <app-dashboard-card [Confirmed]='Confirmed' [dailyc]='DailyConfirmed' [Active]='Active' [Death]='Death' [dailyd]='DailyDeceased'
+      [Recovered]='Recovered' [dailyr]='DailyRecovered'></app-dashboard-card>
 </div>
+
+
+
 
 <div class="grid-container">
     <div class="padding-20">
         <div class="row">
             <div class="col-md 6">
                 <div class="table-heading"> STATE DATA </div>
-                <p-table [columns]="gridColumns" [value]="covid19DisplayData"
-                    dataKey="state" [rowHover]="true">
+                <br><br>
+                <p-table [columns]="gridColumns" [value]="covid19DisplayData" 
+                    dataKey="state" [rowHover]="true" >
                     <ng-template pTemplate="header" let-columns>
                         <tr>
                             <th *ngFor="let col of columns" [ngStyle]="col.style">
@@ -71,7 +75,7 @@
             </div>
             <div class="col-md 6">
                 <div class="table-heading"> STATISTICS </div>
-                
+                    <br><br>
                     <google-chart [data]="tooltipChart" ></google-chart>
                
             </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { GoogleChartInterface } from 'ng2-google-charts';
+import { Covid19Data } from 'src/app/interfaces/data-interface';
 import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
@@ -11,6 +12,11 @@ export class HomeComponent implements OnInit {
   @ViewChild('mychart1 ', {static: false}) mychart1:any;
   @ViewChild('mychart2 ', {static: false}) mychart2:any;
   @ViewChild('mychart3 ', {static: false}) mychart3:any;
+
+  public covid19Data: any;
+  public DailyConfirmed:any;
+  public DailyRecovered:any;
+  public DailyDeceased:any;
 
 
   tempConfirmed:number=0;
@@ -79,7 +85,16 @@ export class HomeComponent implements OnInit {
     //firstRowIsData: true,
       options: {
         height:500,
-        width:1200
+        width:1200,
+        hAxis: {
+          title: 'States', 
+          minValue: 0, 
+          maxValue: 15},
+        vAxis: {
+          title: 'Total Cases',
+          scaleType:'log',
+          // gridlines:{count:40}
+        }
       },
     };
 
@@ -90,17 +105,17 @@ export class HomeComponent implements OnInit {
     dataTable: this.database,
     options: {
       region: 'IN', // INDIA
-      colorAxis: {colors: ['#00F919', '#0FFFE4', '#1FA20F','#156930','#033E3B']},
+      colorAxis: {colors: ['rgb(158, 197, 107)','rgb(228, 222, 222)','rgb(223, 126, 126)','rgb(197, 107, 182)','rgb(226, 87, 87)','rgb(223, 58, 58)','rgb(216, 24, 24)']},
       resolution: 'provinces',
       backgroundColor: '#00000',
       datalessRegionColor: '#00000',
       defaultColor: '#00000',
       width: 1200,
-      height:500
+      height:500,
     } 
   };
 
-
+// '#00F919', '#0FFFE4', '#1FA20F','#156930','#033E3B'
   }
 
 
@@ -154,6 +169,8 @@ export class HomeComponent implements OnInit {
         }
       });
 
+      this.getDailyData();
+
   }
 
   updateChart(input:HTMLInputElement){
@@ -166,7 +183,21 @@ export class HomeComponent implements OnInit {
    
   }
 
-
+  public getDailyData():void{
+    this.dataservice.getCovid19Data().subscribe((data:Covid19Data)=>{
+      this.covid19Data = data.cases_time_series;
+      for(const[key,value]of Object.entries(this.covid19Data)){
+        var x:any=value;
+        this.DailyConfirmed=parseInt(x.dailyconfirmed);
+        this.DailyDeceased=parseInt(x.dailydeceased);
+        this.DailyRecovered=parseInt(x.dailyrecovered);
+      }
+      // console.log(this.DailyConfirmed);
+      this.DailyConfirmed=this.DailyConfirmed.toLocaleString('en-IN', {maximumFractionDigits:2});
+      this.DailyDeceased=this.DailyDeceased.toLocaleString('en-IN', {maximumFractionDigits:2});
+      this.DailyRecovered=this.DailyRecovered.toLocaleString('en-IN', {maximumFractionDigits:2});
+    });
+  }
 
 
 
