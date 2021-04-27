@@ -53,9 +53,9 @@ export class DataServiceService {
 
   public getGridColumns() {
     const columns = [
-      {
-        field: 'blank', header: '', mobileHeader: '', style: { width: '1%', 'text-align': 'right'}
-      },
+      // {
+      //   field: 'blank', header: '', mobileHeader: '', style: { width: '1%', 'text-align': 'right'}
+      // },
       {
         field: 'state', header: 'STATE/UT', mobileHeader: 'STATE/UT', style: { width: '80px', 'min-width': '30px', 'max-width': '100px'}
       },

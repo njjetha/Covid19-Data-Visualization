@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import {Covid19Data,DistrictData,StateWiseCases,CasesData,TestingData} from 'src/app/interfaces/data-interface';
 import { GoogleChartInterface } from 'ng2-google-charts';
+import { BubbleController } from 'chart.js';
 
 @Component({
   selector: 'app-states',
@@ -181,6 +182,7 @@ export class StatesComponent implements OnInit {
         scaleType:'linear',
         gridlines:{count:40}
       },
+      backgroundColor: '#80d8c6',
       }
     };
   }
