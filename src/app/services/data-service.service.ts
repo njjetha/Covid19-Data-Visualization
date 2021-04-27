@@ -54,22 +54,22 @@ export class DataServiceService {
   public getGridColumns() {
     const columns = [
       {
-        field: 'blank', header: '', mobileHeader: '', style: { width: '2%', 'text-align': 'right'}
+        field: 'blank', header: '', mobileHeader: '', style: { width: '1%', 'text-align': 'right'}
       },
       {
         field: 'state', header: 'STATE/UT', mobileHeader: 'STATE/UT', style: { width: '80px', 'min-width': '30px', 'max-width': '100px'}
       },
       {
-        field: 'confirmed', header: 'CONFIRMED', mobileHeader: 'CNFM', style: { width: '50px', 'min-width': '10px', 'max-width': '100px'}
+        field: 'confirmed', header: 'CONFIRMED', mobileHeader: 'CNFM', style: { width: '60px', 'min-width': '10px', 'max-width': '100px','text-align': 'center'}
       },
       {
-        field: 'active', header: 'ACTIVE', mobileHeader: 'ACTV', style: { width: '50px', 'min-width': '10px', 'max-width': '100px'}
+        field: 'active', header: 'ACTIVE', mobileHeader: 'ACTV', style: { width: '60px', 'min-width': '10px', 'max-width': '100px','text-align': 'center'}
       },
       {
-        field: 'recovered', header: 'RECOVERED', mobileHeader: 'RCVD', style: { width: '50px', 'min-width': '10px', 'max-width': '100px'}
+        field: 'recovered', header: 'RECOVERED', mobileHeader: 'RCVD', style: { width: '60px', 'min-width': '10px', 'max-width': '100px','text-align': 'center'}
       },
       {
-        field: 'deaths', header: 'DEATHS', mobileHeader: 'DTHS', style: { width: '50px', 'min-width': '10px', 'max-width': '100px'}
+        field: 'deaths', header: 'DEATHS', mobileHeader: 'DTHS', style: { width: '60px', 'min-width': '10px', 'max-width': '100px','text-align': 'center'}
       },
     ];
     return columns;
@@ -78,10 +78,19 @@ export class DataServiceService {
   public getTreeTableColumns() {
     const columns = [
       {
-        field: 'district', header: 'DISTRICT', style: { width: '75px', 'min-width': '75px', 'max-width': '100px'}
+        field: 'district', header: 'DISTRICT', style: { width: '100px', 'min-width': '75px', 'max-width': '100px'}
       },
       {
-        field: 'confirmed', header: 'CONFIRMED', style: { width: '75px', 'min-width': '75px', 'max-width': '100px'}
+        field: 'confirmed', header: 'CONFIRMED', style: { width: '100px', 'min-width': '75px', 'max-width': '100px','text-align': 'center'}
+      },
+      {
+        field: 'active', header: 'ACTIVE', style: { width: '100px', 'min-width': '75px', 'max-width': '100px','text-align': 'center'}
+      },
+      {
+        field: 'recovered', header: 'RECOVERED', style: { width: '100px', 'min-width': '75px', 'max-width': '100px','text-align': 'center'}
+      },
+      {
+        field: 'deceased', header: 'DECEASED', style: { width: '100px', 'min-width': '75px', 'max-width': '100px','text-align': 'center'}
       }
     ];
     return columns;

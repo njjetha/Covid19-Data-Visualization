@@ -118,7 +118,7 @@ export class StatesComponent implements OnInit {
               this.totalDeath+=z['deceased'];
               this.totalRecovered+=z['recovered'];
               this.totalActive+=z['active'];
-              this.transformedDistrictWiseData.push({ state: key, district: key2, confirmed: z['confirmed'] });
+              this.transformedDistrictWiseData.push({ state: key, district: key2, confirmed: z['confirmed'],active:z['active'],recovered:z['recovered'],deceased:z['deceased'] });
               }
         }
       }
@@ -156,7 +156,7 @@ export class StatesComponent implements OnInit {
       options: {
         title: 'Covid Cases till Date',
         legend: { position: 'top', maxLines: 3 },
-        width: 700,
+        width: 600,
         height:700,
       
       animation: {

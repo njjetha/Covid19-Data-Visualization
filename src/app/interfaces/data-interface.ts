@@ -41,5 +41,8 @@ export interface DistrictData {
     state: string;
     district: string;
     confirmed: string;
+    active:string;
+    deceased:string;
+    recovered:string;
 }
 
