@@ -1,0 +1,8 @@
+---
+- name: Pull docker image of covid19
+  hosts: all
+  tasks:
+    - name: Pull covid19 devops image
+      docker_image:
+        name: njjetha/covid19
+        source: pull
