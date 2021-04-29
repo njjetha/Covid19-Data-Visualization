@@ -41,9 +41,13 @@ EXPOSE 4200
 #CMD ["node","app.js"]
 
 
+
 ### STAGE 2: Run ###
  FROM nginx:1.18.0
 # COPY nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
  #COPY nginx/nginx.conf /etc/nginx/nginx.conf
+ COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+ EXPOSE 80
 COPY --from=build /app/dist/covid19 /usr/share/nginx/html
 #CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off:'
+
