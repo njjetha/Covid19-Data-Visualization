@@ -3,14 +3,15 @@ import { Injectable } from '@angular/core';
 import {map} from 'rxjs/operators';
 import { Covid19Data } from '../interfaces/data-interface';
 import { covidDataSumary } from '../models/coviddata';
-
+import { NGXLogger } from 'ngx-logger';
 @Injectable({
   providedIn: 'root'
 })
 export class DataServiceService {
 
+  
   private globalDataUrl=`https://api.covid19india.org/state_district_wise.json`
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private logger:NGXLogger) { }
 
   stateName:any[]=[]; //It will hold the stateName 
 
@@ -52,6 +53,8 @@ export class DataServiceService {
   }
 
   public getGridColumns() {
+    this.logger.debug('Arranging the data in tabular format and specifying style');
+    this.logger.error("Table format ");
     const columns = [
       // {
       //   field: 'blank', header: '', mobileHeader: '', style: { width: '1%', 'text-align': 'right'}
@@ -76,6 +79,7 @@ export class DataServiceService {
   }
 
   public getTreeTableColumns() {
+    this.logger.debug('Arranging the data in sub tabular format and specifying style');
     const columns = [
       {
         field: 'district', header: 'DISTRICT', style: { width: '100px', 'min-width': '75px', 'max-width': '100px'}
@@ -97,10 +101,12 @@ export class DataServiceService {
   }
 
   public getCovid19Data() {
+    this.logger.debug('Fetching Covid19 Data from the api');
     return this.http.get<Covid19Data>('https://api.covid19india.org/data.json');
   }
 
   public getDistrictWiseData() {
+    this.logger.debug('Fetching Covid19 Data statewise from the api');
     return this.http.get('https://api.covid19india.org/state_district_wise.json');
   }
 

@@ -3,6 +3,7 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 import {Covid19Data,DistrictData,StateWiseCases,CasesData,TestingData} from 'src/app/interfaces/data-interface';
 import { GoogleChartInterface } from 'ng2-google-charts';
 import { BubbleController } from 'chart.js';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-states',
@@ -62,11 +63,11 @@ export class StatesComponent implements OnInit {
   };
 
 
-  constructor(private dataservice:DataServiceService) { 
+  constructor(private dataservice:DataServiceService, private logger: NGXLogger) { 
     this.chartData=[];
     this.barChartData=[];
     this.innerWidth=window.innerWidth;
-   
+    this.logger.debug('State Component working correctly');
   }
 
   ngOnInit(): void {
@@ -81,6 +82,7 @@ export class StatesComponent implements OnInit {
   public getCovidData(): void {
     this.dataservice.getCovid19Data().subscribe((data: Covid19Data) => {
       if (data !== null) {
+        this.logger.info('covid data recived from api is not null ');
         this.covid19Data = data.statewise;
         this.chartData = data.cases_time_series;
         this.barChartData = data.tested;
@@ -91,18 +93,19 @@ export class StatesComponent implements OnInit {
         });
       }
     }, (error) => {
-      console.log(error);
+      this.logger.error('Error Message -> '+error);
     });
   }
 
   public getDistrictWiseData(): void {
     this.dataservice.getDistrictWiseData().subscribe((data) => {
       if (data !== null) {
+        this.logger.info('State wise covid data recieved is not null');
         this.districtWiseData = data;
         this.transformDistrictWiseData(this.districtWiseData);
       }
     }, (error) => {
-      console.log(error);
+      this.logger.error('Error Message -> '+error);
     });
   }
 
@@ -120,6 +123,7 @@ export class StatesComponent implements OnInit {
               this.totalRecovered+=z['recovered'];
               this.totalActive+=z['active'];
               this.transformedDistrictWiseData.push({ state: key, district: key2, confirmed: z['confirmed'],active:z['active'],recovered:z['recovered'],deceased:z['deceased'] });
+              this.logger.info('StateName is '+key+' District name is '+key2+' Confirmed cases '+z['confirmed']);
               }
         }
       }
@@ -143,6 +147,7 @@ export class StatesComponent implements OnInit {
         this.DailyRecovered=parseInt(x.dailyrecovered);
       }
       // console.log(this.DailyConfirmed);
+      this.logger.debug('DailyConfirmed data came ->'+ this.DailyConfirmed);
       this.DailyConfirmed=this.DailyConfirmed.toLocaleString('en-IN', {maximumFractionDigits:2});
       this.DailyDeceased=this.DailyDeceased.toLocaleString('en-IN', {maximumFractionDigits:2});
       this.DailyRecovered=this.DailyRecovered.toLocaleString('en-IN', {maximumFractionDigits:2});
@@ -151,6 +156,7 @@ export class StatesComponent implements OnInit {
   }
 
   initChart(){
+    this.logger.debug(' Line Chart function working ')
     this.tooltipChart={
       chartType:'LineChart',
       dataTable:this.lineGraphdata,
@@ -185,5 +191,6 @@ export class StatesComponent implements OnInit {
       backgroundColor: '#80d8c6',
       }
     };
+    this.logger.debug('Linegraph data length ->'+this.lineGraphdata.length)
   }
 }

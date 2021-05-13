@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-dashboard-card',
@@ -23,10 +24,12 @@ export class DashboardCardComponent implements OnInit {
   DailyRecovered:any;
 
 
-  constructor() { }
+  constructor(private logger: NGXLogger) { 
+    this.logger.debug('Dashboard Component working correctly');
+  }
  
-
   ngOnInit(): void {
+    // this.logger.debug('Active cases'+parseInt(this.Active));
   }
 
 }

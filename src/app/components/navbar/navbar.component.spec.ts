@@ -4,7 +4,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { TableModule } from 'primeng/table';
 import { DataServiceService } from 'src/app/services/data-service.service';
- 
+// import { NGXLogger } from 'ngx-logger';
+
 import { NavbarComponent } from './navbar.component';
  
 describe('NavbarComponent', () => {

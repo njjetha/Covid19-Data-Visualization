@@ -11,6 +11,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component'
 import { Ng2GoogleChartsModule, GoogleChartsSettings } from 'ng2-google-charts';
 import { StatesComponent } from './components/states/states.component';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 
 
@@ -30,6 +31,7 @@ import { StatesComponent } from './components/states/states.component';
     TableModule,
     ChartModule,
     Ng2GoogleChartsModule,
+    LoggerModule.forRoot({serverLoggingUrl: '/api/logs', level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR})
   ],
   providers: [],
   bootstrap: [AppComponent]

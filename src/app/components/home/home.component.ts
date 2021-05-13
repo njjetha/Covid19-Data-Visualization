@@ -2,6 +2,7 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { GoogleChartInterface } from 'ng2-google-charts';
 import { Covid19Data } from 'src/app/interfaces/data-interface';
 import { DataServiceService } from 'src/app/services/data-service.service';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-home',
@@ -48,22 +49,32 @@ export class HomeComponent implements OnInit {
     chartType: 'GeoChart'
   };
 
-  constructor(private dataservice:DataServiceService) { }
+  constructor(private dataservice:DataServiceService, private logger:NGXLogger) { 
+    this.logger.debug('Currently in home component');
+  }
 
 
   initChart(caseType:string){
     // console.log(caseType);
     
-    if(caseType=='c')
+    if(caseType=='c'){
       this.database=this.database_confirmed;
-    if(caseType=='a')
+      this.logger.info('Ouptut from input value is chart but database used is of confirmed');
+    }
+    if(caseType=='a'){
       this.database=this.database_active;
-    if(caseType=='r')
+      this.logger.info('Ouptut from input value is chart but database used is of active');
+    }
+    if(caseType=='r'){
       this.database=this.database_recovered;
-    if(caseType=='d')
+      this.logger.info('Ouptut from input value is chart but database used is of recovered');
+    }
+    if(caseType=='d'){
       this.database=this.database_deaths;
+      this.logger.info('Ouptut from input value is chart but database used is of deaths');
+    }
   
-
+   
   //  console.log(this.database);
 
     this.pieChart={
@@ -78,6 +89,8 @@ export class HomeComponent implements OnInit {
         },
     };
   
+  this.logger.debug('PieChart Working with the database of length '+this.pieChart.dataTable.length);
+
   this.ColumnChart={
     chartType: 'ColumnChart',
     // dataTable: this.database,
@@ -98,7 +111,7 @@ export class HomeComponent implements OnInit {
       },
     };
 
-    // console.log(this.pieChart.dataTable);
+    this.logger.debug('Column Chart working correctly');
                        // added by gourav for geochart
     this.geoChart={
       chartType: 'GeoChart',
@@ -116,6 +129,7 @@ export class HomeComponent implements OnInit {
   };
 
 // '#00F919', '#0FFFE4', '#1FA20F','#156930','#033E3B'
+  this.logger.log('GeoChart working correctly');
   }
 
 
@@ -162,6 +176,8 @@ export class HomeComponent implements OnInit {
             this.database_active.push([this.dataservice.getStateName(i),this.tempActive]);
             this.database_recovered.push([this.dataservice.getStateName(i),this.tempRecovered]);
             this.database_deaths.push([this.dataservice.getStateName(i),this.tempDeath]);
+
+            this.logger.info('StateNames are '+this.dataservice.getStateName(i));
             
           }
           // console.log(this.database);
@@ -175,6 +191,7 @@ export class HomeComponent implements OnInit {
 
   updateChart(input:HTMLInputElement){
     // console.log(input.value);
+    this.logger.info('Input value into charts '+input);
     this.initChart(input.value);
     this.mychart1.draw();
     this.mychart2.draw();
@@ -191,8 +208,12 @@ export class HomeComponent implements OnInit {
         this.DailyConfirmed=parseInt(x.dailyconfirmed);
         this.DailyDeceased=parseInt(x.dailydeceased);
         this.DailyRecovered=parseInt(x.dailyrecovered);
+        this.logger.info('Daily Confirmed Cases ='+this.DailyConfirmed + 'on date '+ x.dateymd);
+        // this.logger.info('Daily Deceased Cases ='+this.DailyDeceased);
+        // this.logger.info('Daily Recovered Cases ='+this.DailyRecovered);
       }
       // console.log(this.DailyConfirmed);
+      this.logger.debug('DailyConfirmed cases data -> '+this.DailyConfirmed);
       this.DailyConfirmed=this.DailyConfirmed.toLocaleString('en-IN', {maximumFractionDigits:2});
       this.DailyDeceased=this.DailyDeceased.toLocaleString('en-IN', {maximumFractionDigits:2});
       this.DailyRecovered=this.DailyRecovered.toLocaleString('en-IN', {maximumFractionDigits:2});

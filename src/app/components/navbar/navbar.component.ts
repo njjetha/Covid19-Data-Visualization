@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  
+  constructor(private logger: NGXLogger) { 
+    this.logger.debug('Navbar Component working correctly');
+  }
+ 
 
   ngOnInit(): void {
   }
